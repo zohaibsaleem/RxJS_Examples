@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RxJS</title>
+	<script src="rx.all.js" type="text/javascript"></script>
+
+</head>
+<body style="overflow:hidden;">
+
+	<div id="container"  style="overflow:hidden;" >
+	</div>
+
+<script type="text/javascript">
+		
+	// function tester()
+	// {
+		var mouseMove = Rx.Observable.fromEvent(document, "mousemove" );
+
+		var text = "Sir Syed University of Engineering & Technology ";
+
+		var container = document.getElementById("container");
+
+		
+		for(var i=0; i < text.length; i++)
+		{
+			(function(i)
+			{
+
+				var s = document.createElement("span");
+				s.innerHTML = text.charAt(i);
+				s.style.position = "absolute";
+				container.appendChild(s);
+
+				mouseMove.delay(i * 25).subscribe(function(mouseEvent)
+				{
+					s.style.top = mouseEvent.clientY + "px";
+					s.style.left = mouseEvent.clientX + i * 10 + 15 + "px";
+				});
+			}) (i);
+		}
+
+	//}
+
+
+	</script>
+</body>
+</html>
